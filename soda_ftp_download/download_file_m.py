@@ -1,12 +1,24 @@
 import ftplib
 import os
-from tqdm import tqdm
+
+
+def is_jupyter():
+    try:
+        __IPYTHON__  # type: ignore
+        return True
+    except NameError:
+        return False
+
 
 ftp_user = "anonymous"
 ftp_password = ""
 
 
 def download_file(url: str, local_file: str = ""):
+    if is_jupyter():
+        from tqdm.notebook import tqdm
+    else:
+        from tqdm import tqdm
     if not url.startswith("ftp://"):
         print("incorrect url")
         return
