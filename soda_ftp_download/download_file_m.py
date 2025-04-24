@@ -7,17 +7,16 @@ ftp_password = ""
 
 
 def download_file(url: str, local_file: str = ""):
-    ftp_host = "example.com"
-    remote_file = "file.zip"
-    if url.startswith("ftp://"):
-        url_no_ftp = url[5:]
-        ftp_host = url_no_ftp[url_no_ftp.index("/") :]
-        remote_file = url_no_ftp[url_no_ftp.rfind("/") :]
-    else:
+    if not url.startswith("ftp://"):
         print("incorrect url")
         return
+
+    url_no_ftp = url[len("ftp://") :]
+    ftp_host = url_no_ftp[: url_no_ftp.index("/")]
+    remote_file = url_no_ftp[url_no_ftp.index("/") :]
+
     if local_file == "":
-        local_file = remote_file
+        local_file = url_no_ftp[url_no_ftp.rfind("/") + 1 :]
     try:
         with ftplib.FTP(ftp_host) as ftp:
             ftp.login(ftp_user, ftp_password)
