@@ -1,6 +1,6 @@
 [project]
 name = "soda-ftp-download"
-version = "2025.4.24.0"
+version = "2025.5.17.0"
 description = "download files from FTP with progress bar and auto-resume support."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -9,7 +9,7 @@ dependencies = [
 ]
 
 [project.urls]
-Repository = "https://github.com/soda92/soda_ftp_download"
+Repository = "https://github.com/soda92/soda-ftp-download"
 
 [build-system]
 requires = ["hatchling"]
